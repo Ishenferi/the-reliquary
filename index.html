@@ -258,6 +258,192 @@
     .empty { text-align:center; padding:56px 20px; color:var(--text-dim); font-size:.85rem; }
     .empty .icon { font-size:2rem; margin-bottom:14px; opacity:.5; display:block; }
     .empty p { font-family:'Cinzel',Georgia,serif; letter-spacing:.06em; }
+
+    /* ── Mobile elements (hidden on desktop) ──────────────────────────── */
+    #mobileHeader { display:none; }
+    #mobileNav    { display:none; }
+
+    /* ═══════════════════════════════════════════════════════════════════ */
+    /* ══  MOBILE RESPONSIVE  (≤ 640 px)  ════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════════════════ */
+    @media (max-width: 640px) {
+
+      /* Hide desktop nav */
+      nav:not(#mobileNav) { display:none; }
+
+      /* ── Mobile top header ──────────────────────────────────────────── */
+      #mobileHeader {
+        display:flex; align-items:center; justify-content:space-between;
+        position:sticky; top:0; z-index:100;
+        background:var(--surface); border-bottom:1px solid var(--border);
+        padding:12px 16px 10px;
+      }
+      .mob-brand {
+        font-family:'Cinzel Decorative','Cinzel',Georgia,serif;
+        font-size:.9rem; font-weight:700;
+        color:var(--purple-light); letter-spacing:.04em;
+        text-shadow:0 0 20px rgba(109,40,217,.5);
+      }
+      .mob-date {
+        font-family:'Cinzel',Georgia,serif;
+        font-size:.62rem; color:var(--text-muted);
+        letter-spacing:.07em; text-transform:uppercase; font-weight:600;
+      }
+
+      /* ── Mobile bottom nav bar ──────────────────────────────────────── */
+      #mobileNav {
+        display:flex; position:fixed; bottom:0; left:0; right:0; z-index:200;
+        background:var(--surface);
+        border-top:1px solid var(--border);
+        padding:0 0 env(safe-area-inset-bottom,0);
+        box-shadow:0 -4px 24px rgba(0,0,0,.5);
+      }
+      .mob-tab {
+        flex:1; display:flex; flex-direction:column; align-items:center;
+        justify-content:center; gap:3px;
+        padding:8px 4px 10px; border:none; background:none;
+        cursor:pointer; transition:background .15s;
+        -webkit-tap-highlight-color:transparent;
+      }
+      .mob-tab:active { background:var(--purple-dim); }
+      .mob-tab-icon { font-size:1.15rem; line-height:1; }
+      .mob-tab-label {
+        font-family:'Cinzel',Georgia,serif; font-size:.52rem; font-weight:700;
+        letter-spacing:.07em; text-transform:uppercase;
+        color:var(--text-muted); transition:color .15s;
+        white-space:nowrap;
+      }
+      .mob-tab.active .mob-tab-label { color:var(--purple-light); }
+      .mob-tab.active .mob-tab-icon  { filter:drop-shadow(0 0 6px rgba(167,139,250,.6)); }
+      .mob-tab .nav-count { font-size:.5rem; min-width:15px; height:15px; }
+
+      /* ── View layout ────────────────────────────────────────────────── */
+      .view { padding:16px 12px 100px; }
+
+      /* ── Save status toast: float above bottom nav ──────────────────── */
+      #saveStatus { bottom:72px; right:12px; font-size:.65rem; padding:5px 11px; }
+
+      /* ── Page header ────────────────────────────────────────────────── */
+      .page-header h1 { font-size:1.2rem; }
+      .page-header .date { display:none; } /* already shown in mobile header */
+      .stats { gap:12px; }
+      .stat { font-size:.7rem; }
+
+      /* ── Add section ────────────────────────────────────────────────── */
+      .add-section { padding:12px; border-radius:10px; }
+      .add-row { gap:6px; }
+      .add-section input[type="text"] { font-size:.88rem; }
+      .add-meta {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:6px;
+        margin-top:8px;
+      }
+      .add-meta select.mini-select,
+      .add-meta input[type="date"].mini-select { width:100%; font-size:.72rem; padding:6px 7px; }
+      .day-picker { grid-column:1 / -1; }
+      .add-btn { width:36px; height:36px; font-size:1.5rem; flex-shrink:0; }
+
+      /* ── Bulk link ──────────────────────────────────────────────────── */
+      .bulk-link-row { margin:-8px 0 16px; }
+
+      /* ── Filters: horizontal scroll row ────────────────────────────── */
+      .filters {
+        display:flex; flex-wrap:nowrap; overflow-x:auto;
+        gap:6px; padding-bottom:4px; -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+      }
+      .filters::-webkit-scrollbar { display:none; }
+      .filter-btn { flex-shrink:0; font-size:.7rem; padding:5px 12px; }
+
+      /* ── Category labels ────────────────────────────────────────────── */
+      .category-label { font-size:.6rem; }
+
+      /* ── Task items ─────────────────────────────────────────────────── */
+      .task-main { padding:11px 10px; gap:8px; }
+      .task-text  { font-size:.88rem; }
+      /* Always show actions on touch devices */
+      .task-actions { opacity:1; gap:4px; }
+      .action-btn  { height:30px; font-size:.7rem; padding:0 8px; }
+      .task-select { font-size:.68rem; padding:4px 5px; }
+      .task-check  { width:22px; height:22px; } /* larger touch target */
+      .task-meta   { font-size:.64rem; }
+      .task-badges { gap:4px; margin-top:4px; }
+      .badge       { font-size:.6rem; padding:2px 7px; }
+
+      /* ── Notes panel ────────────────────────────────────────────────── */
+      .notes-panel { padding:10px 10px 12px 10px; }
+      .notes-panel textarea { font-size:.82rem; min-height:70px; }
+
+      /* ── Task day picker (in task card) ─────────────────────────────── */
+      .task-day-picker { padding:0 10px 10px 10px; }
+
+      /* ── Banished view ──────────────────────────────────────────────── */
+      .banished-task   { padding:10px 10px; gap:8px; }
+      .banished-text   { font-size:.86rem; }
+      .banished-dates  { font-size:.64rem; }
+      .banished-actions { opacity:1; } /* always visible on mobile */
+      .btn-sm          { font-size:.66rem; padding:4px 9px; }
+      .banished-intro  { font-size:.75rem; }
+
+      /* ── Calendar ───────────────────────────────────────────────────── */
+      .cal-month-title { font-size:.85rem; min-width:130px; }
+      .cal-header-cell { font-size:.58rem; padding:5px 0; letter-spacing:.05em; }
+      .cal-day         { min-height:52px; padding:4px 4px; }
+      .cal-day-num     { font-size:.7rem; margin-bottom:3px; }
+      .cal-dot         { width:6px; height:6px; }
+      .cal-overflow    { font-size:.54rem; }
+      /* Rephrase calendar hint for mobile (no right-click on touch) */
+      .cal-hint { font-size:0; }
+      .cal-hint::before { content:'Long-press any date to invoke an abomination.'; font-size:.67rem; }
+
+      /* Selected day panel */
+      .cal-selected-title  { font-size:.76rem; }
+      .cal-task-row        { font-size:.8rem; padding:6px 8px; }
+      .cal-selected-add    { font-size:.64rem; padding:4px 9px; }
+      .cal-empty           { font-size:.76rem; }
+
+      /* ── Modals: bottom-sheet style ─────────────────────────────────── */
+      #quickAddModal,
+      #bulkModal {
+        align-items:flex-end;
+        padding:0;
+      }
+      #quickAddModal .modal-box,
+      #bulkModal    .modal-box {
+        max-width:100%; width:100%;
+        border-radius:20px 20px 0 0;
+        padding:22px 18px 30px;
+        border-left:none; border-right:none; border-bottom:none;
+        /* Slide-up animation */
+        animation:slideUp .22s ease;
+      }
+      @keyframes slideUp { from{transform:translateY(60px);opacity:0;} to{transform:translateY(0);opacity:1;} }
+      .modal-title    { font-size:.88rem; }
+      .modal-input    { font-size:.88rem; }
+      .modal-row      { gap:6px; }
+      .modal-btn      { padding:9px 16px; font-size:.76rem; }
+
+      /* Bulk modal */
+      .bulk-hint     { font-size:.7rem; line-height:1.6; }
+      .bulk-textarea { min-height:120px; font-size:.84rem; }
+      .bulk-preview  { max-height:150px; }
+
+      /* ── Context menu ───────────────────────────────────────────────── */
+      #ctxMenu { min-width:170px; }
+      .ctx-item { font-size:.78rem; padding:10px 12px; }
+
+      /* ── Config banner ──────────────────────────────────────────────── */
+      #configBanner { font-size:.7rem; padding:8px 14px; }
+
+    } /* end @media 640px */
+
+    /* ── Long-press context menu on mobile (touch) ────────────────────── */
+    @media (hover: none) {
+      /* Tasks: actions always visible, no hover needed */
+      .task-item:not(:hover) .task-actions { opacity:1; }
+      .banished-task:not(:hover) .banished-actions { opacity:1; }
+    }
   </style>
 </head>
 <body>
@@ -285,6 +471,28 @@
     Banished <span class="nav-count" id="banishedNavCount">0</span>
   </button>
   <button class="nav-link" id="nav-chronicle" onclick="switchView('chronicle',this)">Chronicle</button>
+</nav>
+
+<!-- Mobile: sticky top header -->
+<div id="mobileHeader">
+  <span class="mob-brand">The Reliquary</span>
+  <span class="mob-date" id="mobDateDisplay"></span>
+</div>
+
+<!-- Mobile: bottom tab bar -->
+<nav id="mobileNav">
+  <button class="mob-tab active" id="mob-abominations" onclick="switchView('abominations',this)">
+    <span class="mob-tab-icon">⧖</span>
+    <span class="mob-tab-label">Abominations</span>
+  </button>
+  <button class="mob-tab" id="mob-banished" onclick="switchView('banished',this)">
+    <span class="mob-tab-icon">⚰</span>
+    <span class="mob-tab-label">Banished <span class="nav-count" id="banishedMobCount">0</span></span>
+  </button>
+  <button class="mob-tab" id="mob-chronicle" onclick="switchView('chronicle',this)">
+    <span class="mob-tab-icon">📅</span>
+    <span class="mob-tab-label">Chronicle</span>
+  </button>
 </nav>
 
 <!-- ═══ ABOMINATIONS VIEW ════════════════════════════════════════════════ -->
@@ -432,12 +640,14 @@
   // ║  CONFIGURATION — Replace these two values with your JSONBin.io      ║
   // ║  credentials before uploading to GitHub.                            ║
   // ╚══════════════════════════════════════════════════════════════════════╝
-  const JSONBIN_BIN_ID  = '69b8156db7ec241ddc730bec';
-  const JSONBIN_API_KEY = '$2a$10$545EtCrvL07EDW5ythk.ve4osHSWNzQuye.kHxrWA4pohDYOL4PfO';
+  const JSONBIN_BIN_ID  = '69b820d7aa77b81da9ed19dc';
+  const JSONBIN_API_KEY = '$2a$10$xOczsFiugxAWFBNnv9adFet6XUKV3uIkGQGVvHT2cfHENfkMWwCSu';
   // ═══════════════════════════════════════════════════════════════════════
 
   const JSONBIN_URL  = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
   const CONFIGURED   = JSONBIN_BIN_ID !== 'YOUR_BIN_ID_HERE' && JSONBIN_API_KEY !== 'YOUR_ACCESS_KEY_HERE';
+  // Master Keys use 'X-Master-Key' header; Access Keys use 'X-Access-Key'
+  const KEY_HEADER   = JSONBIN_API_KEY.startsWith('$2a$') ? 'X-Master-Key' : 'X-Access-Key';
   const LOCAL_BACKUP = 'reliquary_local_backup';
 
   const MONTH_NAMES  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -521,7 +731,7 @@
       try{
         const res=await fetch(JSONBIN_URL,{
           method:'PUT',
-          headers:{ 'Content-Type':'application/json', 'X-Access-Key':JSONBIN_API_KEY, 'X-Bin-Versioning':'false' },
+          headers:{ 'Content-Type':'application/json', [KEY_HEADER]:JSONBIN_API_KEY, 'X-Bin-Versioning':'false' },
           body:JSON.stringify({tasks})
         });
         if(!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -549,7 +759,7 @@
     }
 
     try{
-      const res=await fetch(`${JSONBIN_URL}/latest`,{ headers:{'X-Access-Key':JSONBIN_API_KEY} });
+      const res=await fetch(`${JSONBIN_URL}/latest`,{ headers:{[KEY_HEADER]:JSONBIN_API_KEY} });
       if(res.ok){
         const data=await res.json();
         tasks=data.record?.tasks||[];
@@ -600,8 +810,13 @@
   function switchView(view,btn){
     currentView=view;
     document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
-    document.getElementById('view-'+view).classList.add('active'); btn.classList.add('active');
+    document.querySelectorAll('.nav-link,.mob-tab').forEach(b=>b.classList.remove('active'));
+    document.getElementById('view-'+view).classList.add('active');
+    // Activate both the desktop nav link and the mobile tab for this view
+    const desk=document.getElementById('nav-'+view); if(desk) desk.classList.add('active');
+    const mob=document.getElementById('mob-'+view);  if(mob)  mob.classList.add('active');
+    // Scroll mobile view to top
+    window.scrollTo({top:0,behavior:'smooth'});
     if(view==='banished') renderBanished();
     else if(view==='chronicle') renderCalendar();
     else render();
@@ -612,6 +827,10 @@
     document.getElementById('recurCount').textContent=tasks.filter(t=>t.recur!=='none').length;
     document.getElementById('doneStatCount').textContent=nd;
     document.getElementById('banishedNavCount').textContent=nd;
+    document.getElementById('banishedMobCount').textContent=nd;
+    // Keep mobile date header current
+    const mob=document.getElementById('mobDateDisplay');
+    if(mob) mob.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
   }
   function buildMeta(task,showSubdued=false){
     let p=[`<span class="meta-label">Invoked</span><span class="meta-sep">:</span><span class="meta-value">${formatTs(task.createdAt)}</span>`];
@@ -741,6 +960,11 @@
       }
       cell.addEventListener('click',()=>selectCalDate(ds));
       cell.addEventListener('contextmenu',e=>{ e.preventDefault(); showCtxMenu(e.clientX,e.clientY,ds); });
+      // Long-press for mobile touch
+      let lpTimer=null;
+      cell.addEventListener('touchstart',e=>{ lpTimer=setTimeout(()=>{ e.preventDefault(); const t=e.touches[0]; showCtxMenu(t.clientX,t.clientY,ds); },500); },{passive:false});
+      cell.addEventListener('touchend',()=>clearTimeout(lpTimer));
+      cell.addEventListener('touchmove',()=>clearTimeout(lpTimer));
       grid.appendChild(cell);
     }
     renderSelectedDay();
