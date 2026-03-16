@@ -731,9 +731,7 @@
       try{
         const res=await fetch(JSONBIN_URL,{
           method:'PUT',
-          mode:'cors',
-          credentials:'omit',
-          headers:{ 'Content-Type':'application/json', [KEY_HEADER]:JSONBIN_API_KEY, 'X-Bin-Versioning':'false' },
+          headers:{ 'Content-Type':'application/json', [KEY_HEADER]:JSONBIN_API_KEY },
           body:JSON.stringify({tasks})
         });
         if(!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -761,7 +759,7 @@
     }
 
     try{
-      const res=await fetch(`${JSONBIN_URL}/latest`,{ mode:'cors', credentials:'omit', headers:{[KEY_HEADER]:JSONBIN_API_KEY} });
+      const res=await fetch(`${JSONBIN_URL}/latest`,{ headers:{[KEY_HEADER]:JSONBIN_API_KEY} });
       if(res.ok){
         const data=await res.json();
         tasks=data.record?.tasks||[];
