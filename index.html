@@ -641,7 +641,7 @@
   // ║  credentials before uploading to GitHub.                            ║
   // ╚══════════════════════════════════════════════════════════════════════╝
   const JSONBIN_BIN_ID  = '69b820d7aa77b81da9ed19dc';
-  const JSONBIN_API_KEY = '$2a$10$xOczsFiugxAWFBNnv9adFet6XUKV3uIkGQGVvHT2cfHENfkMWwCSu';
+  const JSONBIN_API_KEY = '69b820fdb7ec241ddc734485';
   // ═══════════════════════════════════════════════════════════════════════
 
   const JSONBIN_URL  = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
@@ -731,7 +731,9 @@
       try{
         const res=await fetch(JSONBIN_URL,{
           method:'PUT',
-          headers:{ 'Content-Type':'application/json', [KEY_HEADER]:JSONBIN_API_KEY },
+          mode:'cors',
+          credentials:'omit',
+          headers:{ 'Content-Type':'application/json', [KEY_HEADER]:JSONBIN_API_KEY, 'X-Bin-Versioning':'false' },
           body:JSON.stringify({tasks})
         });
         if(!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -759,7 +761,7 @@
     }
 
     try{
-      const res=await fetch(`${JSONBIN_URL}/latest`,{ headers:{[KEY_HEADER]:JSONBIN_API_KEY} });
+      const res=await fetch(`${JSONBIN_URL}/latest`,{ mode:'cors', credentials:'omit', headers:{[KEY_HEADER]:JSONBIN_API_KEY} });
       if(res.ok){
         const data=await res.json();
         tasks=data.record?.tasks||[];
